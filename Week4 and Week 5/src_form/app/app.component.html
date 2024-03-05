@@ -1,0 +1,61 @@
+<div class="container col-md-5">
+  <h1 class="heading">Player Table</h1>
+<table class="form-table">
+  <tr>
+    <td>
+<form #playerForm="ngForm" (ngSubmit)="onSubmit(playerForm.value)">
+  <div class="form-group">
+    <label for="playerId">Player ID:</label>
+    <input type="number" id="playerId" name="playerId" class="form-control" [(ngModel)]="player.playerId" required>
+    <div *ngIf="playerForm.controls['playerId'].invalid && playerForm.controls['playerId'].touched" class="error-message">
+      Player ID is required
+    </div>
+    </div>
+  
+
+  <div class="form-group">
+    <label for="playerName">Player Name:</label>
+    <input type="text" id="playerName" name="playerName" class="form-control" [(ngModel)]="player.playerName" required>
+  </div>
+  <div class="form-group">
+    <label for="country">Country:</label>
+    <input type="text" id="country" name="country" class="form-control" [(ngModel)]="player.country" required>
+  </div>
+  <div class="form-group">
+    <label for="description">Description:</label>
+    <textarea id="description" name="description" class="form-control" [(ngModel)]="player.description" required></textarea>
+  </div>
+  <div class="form-group">
+    <label for="jerseyNumber">Jersey Number:</label>
+    <input type="number" id="jerseyNumber" name="jerseyNumber" class="form-control" [(ngModel)]="player.jerseyNumber" required>
+    <div *ngIf="playerForm.controls['jerseyNumber'].invalid && (playerForm.controls['jerseyNumber'].dirty || playerForm.controls['jerseyNumber'].touched)" class="error-message text-danger">
+      Jersey Number must be greater than 0.
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="matchesPlayed">Matches Played:</label>
+    <input type="number" id="matchesPlayed" name="matchesPlayed" class="form-control" [(ngModel)]="player.matchesPlayed" required>
+    <div *ngIf="playerForm.controls['matchesPlayed'].invalid && (playerForm.controls['matchesPlayed'].dirty || playerForm.controls['matchesPlayed'].touched)" class="error-message text-danger">
+      <span *ngIf="playerForm.controls['matchesPlayed'].errors?.['min']">Matches Played must be greater than 0.</span>
+      <span *ngIf="playerForm.controls['matchesPlayed'].errors?.['required']">Matches Played is required.</span>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="playerRole">Player Role:</label>
+    <input type="text" id="playerRole" name="playerRole" class="form-control" [(ngModel)]="player.playerRole" required>
+    <div *ngIf="playerForm.controls['playerRole'].invalid && (playerForm.controls['playerRole'].dirty || playerForm.controls['playerRole'].touched)" class="error-message">
+      Player Role is required and must be Batsman, Bowler, Keeper, or All Rounder.
+    </div>
+    
+  </div>
+  <div class="form-group">
+    <label for="teamName">Team Name:</label>
+    <input type="text" id="teamName" name="teamName" class="form-control" [(ngModel)]="player.teamName" required>
+  </div>
+  
+  <button type="submit" class="btn btn-primary" [disabled]="playerForm.invalid">Submit</button>
+</form>
+</td>
+</tr>
+</table>
+</div>
